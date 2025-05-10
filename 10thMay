@@ -1,0 +1,87 @@
+//Q33.Search in rotated sorted array without having any elements solved in O(logn) space using binarysearch 
+class Solution {
+    public int search(int[] nums, int target) {
+        int n = nums.length;
+        int ans = -1;
+        int low =0;
+        int high = n-1;
+
+        while(low<=high){
+            int mid = low+(high-low)/2;
+
+            if(nums[mid]==target){
+                ans = mid;
+                return ans;
+            }
+            if(nums[low]<=nums[mid]){
+                if(target>=nums[low]&& target<=nums[mid]){
+                    high = mid-1;
+                }
+                else{
+                    low = mid+1;
+                }
+            }
+            if(nums[high]>=nums[mid]){
+                if(target>=nums[mid]&&target<=nums[high]){
+                    low = mid+1;
+                }
+                else{
+                    high = mid-1;
+                }
+            }
+            return ans;
+            }
+            }
+------------------------------------------------------------------
+Q81.Search in rotated sorted array solved using binary search and in the given array nums there are repeated values so trimming approach is used
+
+class Solution {
+    public boolean search(int[] nums, int target) {
+        int low =0;
+        int high = nums.length-1;
+        while(low<=high){
+            int mid = low+(high-low)/2;
+            if(nums[mid]==target){
+                return true;
+            
+            }
+            if(nums[low]==nums[mid]&&nums[mid]==nums[high]){
+                low +=1;
+                high -=1;
+            }
+            else if(nums[low]<=nums[mid]){
+                if(target>=nums[low]&&target<=nums[mid]){
+                    high=mid-1;
+
+                }
+                else{
+                    low = mid+1;
+                }
+            }
+            else if(nums[high]>=nums[mid]){
+                if(target>=nums[mid]&&target<=nums[high]){
+                    low=mid+1;
+                }
+                else{
+                    high = mid-1;
+                }
+            }
+        }
+        return false;
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        
